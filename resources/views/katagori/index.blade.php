@@ -8,7 +8,7 @@
         <div class="col-md-3">
             <div class="card">
                 <div class="card-body">
-                    <form>
+                    <form action="{{  }}">
                         <div class="form-group">
                             <label for="nama-barang">Nama Katagori</label>
                             <input

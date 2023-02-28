@@ -31,6 +31,7 @@ Route::get('/barang/keluar', 'BarangController@keluar')->name('barang.keluar');
 Route::get('/brand', 'BrandController@index')->name('brand');
 
 Route::get('/katagori', 'KatagoriController@index')->name('katagori');
+Route::get('/katagori/store', 'KatagoriController@store')->name('katagori');
 
 Route::get('/satuan', 'SatuanController@index')->name('satuan');
 
