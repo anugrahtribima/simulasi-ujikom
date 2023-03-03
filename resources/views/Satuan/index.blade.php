@@ -1,51 +1,95 @@
 @extends('layouts.app') @section('content')
 <div class="container">
-    <div class="d-flex align-items-center">
-        <div style="margin-left: 2px; font-weight: bold">Master Data</div>
-        <div style="margin-left: 5px">/ Satuan /</div>
+    <div class="d-flex">
+        <p style="margin-left: 2px; font-weight: bold">Master Data</p>
+        <p style="margin-left: 5px">/ Satuan</p>
     </div>
     <div class="row">
-        <div class="col-md-3">
+        @role('ketua')
+        <div class="col-md-5">
             <div class="card">
                 <div class="card-body">
-                    <form>
+                    <form action="{{ route('satuan.store') }}" method="post">
+                        @csrf
                         <div class="form-group">
-                            <label for="nama-barang">Nama Satuan</label>
+                            <label for="nama-brand">Nama Satuan</label>
                             <input
                                 type="text"
                                 class="form-control"
-                                id="nama-barang"
+                                name="nama"
+                                id="nama-brand"
+                                placeholder=""
                             />
                         </div>
-                        <button class="btn btn-primary">Simpan Satuan</button>
+                        <button
+                            type="submit"
+                            class="btn btn-outline-primary mt-3"
+                        >
+                            Simpan Satuan
+                        </button>
                     </form>
                 </div>
             </div>
         </div>
-        <div class="col-md">
+        <div class="col-md-7">
             <div class="card">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Kode Satuan</th>
+                            <th scope="col">Nama</th>
+                            <th scope="col">Options</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse ($satuans as $satuan)
+                        <tr>
+                            <td>{{$satuan->no_reg}}</td>
+                            <td>{{$satuan->nama}}</td>
+                            <td>
+                                <form action="" method="post">
+                                    @csrf
+                                    <a
+                                        href="{{ route('brand.edit') }}"
+                                        class="btn btn-outline-warning btn-sm"
+                                        >Edit Satuan</a
+                                    >
+                                    <button
+                                        class="submit btn btn-outline-danger bt-sm"
+                                    >
+                                        Hapus
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        @empty @endforelse
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        @endrole @role('pimpinan')
+        <div class="col-md-12">
+            <div class="card border-0">
                 <div class="card-body">
-                    <table class="table">
+                    <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th scope="col">Kode Satuan</th>
-                                <th scope="col">Nama Satuan</th>
-                                <th scope="col">Option</th>
+                                <th>Kode Satuan</th>
+                                <th>Nama Satuan</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>ST/20220403/001</td>
-                                <td>Botol</td>
-                                <td>
-                                    <a class="btn btn-outline-warning" href="">Edit</a> | <a class="btn btn-outline-danger" href="">Delete</a>
-                                </td>
+                                <td>BRND/20220403/001</td>
+                                <td>Kawasaki</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
+        @endrole
     </div>
 </div>
+
 @endsection

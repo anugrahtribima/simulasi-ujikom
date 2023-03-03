@@ -7,6 +7,11 @@
         <div style="margin-left: 5px;">/ Barang Masuk /</div>
         <button type="button" class="btn btn-outline-primary ml-2">Tambah Stock Baru</button>
     </div>
+    <tr>
+        <div class="alert alert-danger" style="margin-top: 3%" role="alert">
+            Request Barang Akan Masuk Kedalam Table Dibawah Ini
+        </div>
+    </tr>
     <div class="card mt-3">
         <table class="table table-hover">
             <thead>
@@ -20,16 +25,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>ST/20220403/001</td>
-                    <td>Samsung</td>
-                    <td>Request</td>
-                    <td>4</td>
-                    <td>2022-04-21</td>
-                    <td>
-                        <a class="btn btn-outline-primary" href="">Setujui</a> | <a class="btn btn-outline-danger" href="">Tolak</a>
-                    </td>
-                </tr>
+                <td></td>
             </tbody>
         </div>
     </div>

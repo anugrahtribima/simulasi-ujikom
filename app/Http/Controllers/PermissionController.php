@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Satuan;
+use App\Permission;
 use Illuminate\Http\Request;
 
-class SatuanController extends Controller
+class PermissionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,7 @@ class SatuanController extends Controller
      */
     public function index()
     {
-        $satuans = Satuan::paginate(5);
-        return view('satuan.index', compact('satuans'));
+        //
     }
 
     /**
@@ -36,20 +35,16 @@ class SatuanController extends Controller
      */
     public function store(Request $request)
     {
-        $katagoris = Satuan::create(
-            $request->all()
-        );
-
-        return redirect()->back();
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Satuan  $satuan
+     * @param  \App\Permission  $permission
      * @return \Illuminate\Http\Response
      */
-    public function show(Satuan $satuan)
+    public function show(Permission $permission)
     {
         //
     }
@@ -57,22 +52,22 @@ class SatuanController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Satuan  $satuan
+     * @param  \App\Permission  $permission
      * @return \Illuminate\Http\Response
      */
-    public function edit()
+    public function edit(Permission $permission)
     {
-        return view('satuan.edit');
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Satuan  $satuan
+     * @param  \App\Permission  $permission
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Satuan $satuan)
+    public function update(Request $request, Permission $permission)
     {
         //
     }
@@ -80,10 +75,10 @@ class SatuanController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Satuan  $satuan
+     * @param  \App\Permission  $permission
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Satuan $satuan)
+    public function destroy(Permission $permission)
     {
         //
     }

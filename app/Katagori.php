@@ -2,25 +2,25 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
 use Alfa6661\AutoNumber\AutoNumberTrait;
+use Illuminate\Database\Eloquent\Model;
 
 class Katagori extends Model
 {
     use AutoNumberTrait;
 
     protected $table = 'katagoris';
+    protected $guarded = [
+    ];
 
-    protected $guarded = [];
-
-    public function getAutoNumberOption()
+    public function getAutoNumberOptions()
     {
         return [
-            'code' => [
+            'no_reg' => [
                 'format' => function () {
-                    return 'KTG/' . date('YYYY.mm.dd') . '/?';
+                    return 'KTG/' . date('Ymd') . '/?';
                 },
-                'length' => 3,
+                'length' => 3
             ]
         ];
     }

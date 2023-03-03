@@ -1,10 +1,8 @@
-@extends('layouts.app')
-
-@section('content')
+@extends('layouts.app') @section('content')
 <div class="container">
     <div class="d-flex">
-        <p style="margin-left: 2px; font-weight: bold;">Transaksi</p>
-        <p style="margin-left: 5px;">/ Barang Keluar</p>
+        <p style="margin-left: 2px; font-weight: bold">Transaksi</p>
+        <p style="margin-left: 5px">/ Barang Keluar</p>
     </div>
     <div class="card">
         <table class="table table-hover">
@@ -18,9 +16,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td></td>
-                </tr>
+                <tr></tr>
             </tbody>
         </table>
     </div>

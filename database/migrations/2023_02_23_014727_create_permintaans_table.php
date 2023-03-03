@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateKatagorisTable extends Migration
+class CreatePermintaansTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,13 @@ class CreateKatagorisTable extends Migration
      */
     public function up()
     {
-        Schema::create('katagoris', function (Blueprint $table) {
+        Schema::create('permintaans', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nama');
-            $table->string('kode');
+            $table->unsignedInteger('barang_id');
+            $table->string('koe_permintaan');
+            $table->string('jumlah');
+            $table->string('total');
+            $table->string('status');
             $table->timestamps();
         });
     }
@@ -28,6 +31,6 @@ class CreateKatagorisTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('katagoris');
+        Schema::dropIfExists('permintaans');
     }
 }

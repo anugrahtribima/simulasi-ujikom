@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Barang;
+use App\Katagori;
 use Illuminate\Http\Request;
 
 class BarangController extends Controller
@@ -14,8 +15,8 @@ class BarangController extends Controller
      */
     public function index()
     {
-        //
-        return view('barang.index');
+        $katagoris = Katagori::paginate(5);
+        return view('barang.index', compact('katagoris'));
     }
 
     /**
@@ -26,33 +27,8 @@ class BarangController extends Controller
     public function create()
     {
         return view('barang.create');
-        //
     }
 
-    public function restock()
-    {
-        return view('barang.restock');
-        //
-    }
-
-    public function stock()
-    {
-        return view('barang.stock');
-        //
-    }
-
-    public function masuk()
-    {
-        return view('barang.masuk');
-        //
-    }
-
-    public function keluar()
-    {
-        return view('barang.keluar
-        ');
-        //
-    }
     /**
      * Store a newly created resource in storage.
      *
@@ -107,5 +83,10 @@ class BarangController extends Controller
     public function destroy(Barang $barang)
     {
         //
+    }
+
+    public function tampilan()
+    {
+        return view('barang.tampilan');
     }
 }

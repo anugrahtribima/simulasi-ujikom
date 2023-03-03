@@ -12,9 +12,10 @@ class KatagoriController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        return view('katagori.index');
+        $katagoris = Katagori::paginate(5);
+        return view('katagori.index', compact('katagoris'));
     }
 
     /**
@@ -24,7 +25,12 @@ class KatagoriController extends Controller
      */
     public function create()
     {
-        //
+
+        $katagori = Katagori::create(
+            $request->all()
+        );
+
+        return redirect()->back();
     }
 
     /**
@@ -35,7 +41,12 @@ class KatagoriController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $katagori = Katagori::create(
+            $request->all()
+        );
+
+        return redirect()->back();
     }
 
     /**
@@ -57,7 +68,9 @@ class KatagoriController extends Controller
      */
     public function edit(Katagori $katagori)
     {
-        //
+        $katagori = Katagori::findOrFail($id);
+
+        return view('katagori.edit', compact('katagori'));
     }
 
     /**
@@ -78,8 +91,11 @@ class KatagoriController extends Controller
      * @param  \App\Katagori  $katagori
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Katagori $katagori)
+    public function destroy(Request $request, $id)
     {
-        //
+        $katagori = Katagori::findOrFail($id);
+        $katagori->delete($request->all());
+
+        return redirect()->route('katagori');
     }
 }

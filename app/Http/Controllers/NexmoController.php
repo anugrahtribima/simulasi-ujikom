@@ -15,9 +15,9 @@ class NexmoController extends Controller
     {
         $nexmo = app('Nexmo\Client');
         $nexmo->message()->send([
-            'to' => '6281284802395',
-            'from' => 'Nugi2x',
-            'text' => 'au',
+            'to' => $request->no_hp,
+            'from' => 'Hilmi Purdimen',
+            'text' => $request->pesan,
         ]);
 
         return back();
