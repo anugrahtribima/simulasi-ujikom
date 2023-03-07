@@ -60,9 +60,10 @@ class SatuanController extends Controller
      * @param  \App\Satuan  $satuan
      * @return \Illuminate\Http\Response
      */
-    public function edit()
+    public function edit($id)
     {
-        return view('satuan.edit');
+        $satuan = Satuan::findOrFail($id);
+        return view('satuan.edit', compact('satuan'));
     }
 
     /**
@@ -72,9 +73,13 @@ class SatuanController extends Controller
      * @param  \App\Satuan  $satuan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Satuan $satuan)
+    public function update(Request $request, $id)
     {
-        //
+        $satuan = Satuan::findOrFail($id);
+
+        $satuan->update(["nama" => $request->nama]);
+
+        return redirect()->back();
     }
 
     /**
@@ -83,8 +88,11 @@ class SatuanController extends Controller
      * @param  \App\Satuan  $satuan
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Satuan $satuan)
+    public function destroy(Request $request, $id)
     {
-        //
+        $satuan = Satuan::findOrFail($id);
+        $satuan->delete($request->all());
+
+        return redirect()->back();
     }
 }

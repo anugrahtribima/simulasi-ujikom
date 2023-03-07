@@ -50,7 +50,7 @@
                                 <form action="" method="post">
                                     @csrf @method('GET')
                                     <a
-                                        href="{{ route('brand.edit') }}"
+                                        href="{{route('katagori.edit', $katagori->id )}}"
                                         class="btn btn-outline-warning btn-sm"
                                         >Edit Katagori</a
                                     >

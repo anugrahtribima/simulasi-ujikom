@@ -50,15 +50,16 @@
                                 <form action="" method="post">
                                     @csrf
                                     <a
-                                        href="{{ route('brand.edit') }}"
+                                        href="{{route('brand.edit', $brand->id )}}"
                                         class="btn btn-outline-warning btn-sm"
                                         >Edit Brand</a
                                     >
-                                    <button
-                                        class="submit btn btn-outline-danger bt-sm"
+                                    <a
+                                        href="./brand/destroy/{{ $brand->id }}"
+                                        class="btn btn-outline-danger btn-sm"
+                                        onclick="return confirm('Apakah Anda Yakin Menghapus Data?');"
+                                        >Hapus Brand</a
                                     >
-                                        Hapus
-                                    </button>
                                 </form>
                             </td>
                         </tr>

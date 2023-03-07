@@ -23,15 +23,6 @@ class KatagoriController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-
-        $katagori = Katagori::create(
-            $request->all()
-        );
-
-        return redirect()->back();
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -66,10 +57,9 @@ class KatagoriController extends Controller
      * @param  \App\Katagori  $katagori
      * @return \Illuminate\Http\Response
      */
-    public function edit(Katagori $katagori)
+    public function edit($id)
     {
         $katagori = Katagori::findOrFail($id);
-
         return view('katagori.edit', compact('katagori'));
     }
 
@@ -80,9 +70,13 @@ class KatagoriController extends Controller
      * @param  \App\Katagori  $katagori
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Katagori $katagori)
+    public function update(Request $request, $id)
     {
-        //
+        $katagori = Katagori::findOrFail($id);
+
+        $katagori->update(["nama" => $request->nama]);
+
+        return redirect()->back();
     }
 
     /**

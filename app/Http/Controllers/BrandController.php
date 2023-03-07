@@ -61,9 +61,10 @@ class BrandController extends Controller
      * @param  \App\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function edit(Brand $brand)
+    public function edit($id)
     {
-        return view('brand.edit');
+        $brand = Brand::findOrFail($id);
+        return view('brand.edit', compact('brand'));
     }
 
     /**
@@ -73,9 +74,13 @@ class BrandController extends Controller
      * @param  \App\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Brand $brand)
+    public function update(Request $request, $id)
     {
-        //
+        $brand = Brand::findOrFail($id);
+
+        $brand->update(["nama" => $request->nama]);
+
+        return redirect()->back();
     }
 
     /**
@@ -84,8 +89,11 @@ class BrandController extends Controller
      * @param  \App\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Brand $brand)
+    public function destroy(Request $request, $id)
     {
-        //
+        $brand = Brand::findOrFail($id);
+        $brand->delete($request->all());
+
+        return redirect()->route('brand');
     }
 }
