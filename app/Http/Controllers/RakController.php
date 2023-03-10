@@ -2,20 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Satuan;
+use App\Rak;
 use Illuminate\Http\Request;
+use App\Barang;
 
-class SatuanController extends Controller
+class RakController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        $satuans = Satuan::paginate(5);
-        return view('satuan.index', compact('satuans'));
+        $barangs = Barang::Where('katagori_id', $id)->with('brand', 'satuan')->get();
+
+        return view('barang.databarang.index', compact('barangs'));
     }
 
     /**
@@ -36,20 +38,16 @@ class SatuanController extends Controller
      */
     public function store(Request $request)
     {
-        $katagoris = Satuan::create(
-            $request->all()
-        );
-
-        return redirect()->back();
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Satuan  $satuan
+     * @param  \App\Rak  $rak
      * @return \Illuminate\Http\Response
      */
-    public function show(Satuan $satuan)
+    public function show(Rak $rak)
     {
         //
     }
@@ -57,41 +55,34 @@ class SatuanController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Satuan  $satuan
+     * @param  \App\Rak  $rak
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Rak $rak)
     {
-        $satuan = Satuan::findOrFail($id);
-
-        return view('satuan.edit', compact('satuan'));
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Satuan  $satuan
+     * @param  \App\Rak  $rak
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Satuan $satuan)
+    public function update(Request $request, Rak $rak)
     {
-        $satuan->update($request->all());
-
-        return redirect()->route('satuan');
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Satuan  $satuan
+     * @param  \App\Rak  $rak
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, $id)
+    public function destroy(Rak $rak)
     {
-        $satuan = Satuan::findOrFail($id);
-        $satuan->delete($request->all());
-
-        return redirect()->route('satuan');
+        //
     }
 }

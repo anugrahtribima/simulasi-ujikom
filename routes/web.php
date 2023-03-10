@@ -24,10 +24,10 @@ Route::get('/nexmo', 'NexmoController@index');
 Route::post('/nexmo', 'NexmoController@store')->name('nexmo.submit');
 
 Route::get('/katagori', 'KatagoriController@index')->name('katagori');
+Route::get('katagori/edit/{katagori}', 'KatagoriController@edit')->name('katagori.edit');
 Route::post('/katagori/store', 'KatagoriController@store')->name('katagori.store');
-Route::get('katagori/edit/{id}', 'KatagoriController@edit')->name('katagori.edit');
-Route::patch('katagori/update/{id}', 'KatagoriController@update')->name('katagori.update');
-Route::get('/katagori/destroy/{id}', 'KatagoriController@destroy')->name('katagori.destroy');
+Route::patch('katagori/update/{katagori}', 'KatagoriController@update')->name('katagori.update');
+Route::get('/katagori/destroy/{katagori}', 'KatagoriController@destroy')->name('katagori.destroy');
 
 Route::get('/permintaan', 'PermintaanController@index')->name('permintaan');
 
@@ -38,12 +38,16 @@ Route::patch('/satuan/update/{satuan}', 'SatuanController@update')->name('satuan
 Route::get('/satuan/destroy/{satuan}', 'SatuanController@destroy')->name('satuan.destroy');
 
 Route::get('/barang', 'BarangController@index')->name('barang');
-Route::get('/barang/create/{katagoris}', 'BarangController@create')->name('barang.create');
-Route::get('/barang/tampilan', 'BarangController@tampilan')->name('barang.tampilan');
 Route::post('/store/{katagori}', 'BarangController@store')->name('barang.store');
+Route::get('/barang/tampilan', 'BarangController@tampilan')->name('barang.tampilan');
+Route::get('/request/{katagori}', 'RequestBarangController@edit')->name('barang.request');
+Route::get('/barang/create/{katagoris}', 'BarangController@create')->name('barang.create');
+route::post('store/permintaan/{barang}', 'RequestBarangController@store')->name('barang.store.permintaan');
 
-Route::get('/transaksi', 'TransaksiController@index')->name('transaksi');
-Route::get('/transaksi/masuk', 'TransaksiController@masuk')->name('transaksi.masuk');
+Route::get('/in', 'Transaksi\InController@index')->name('transaksi.in');
+Route::get('/out', 'Transaksi\OutController@index')->name('transaksi.out');
+Route::delete('in/{transaksi}', 'Transaksi\InController@destroy')->name('transaksi.destroy');
+Route::post('in/store/{transaksi}', 'Transaksi\InController@store')->name('transaksi.store');
 
 Route::get('/brand', 'BrandController@index')->name('brand');
 Route::get('/brand/edit/{brand}', 'BrandController@edit')->name('brand.edit');

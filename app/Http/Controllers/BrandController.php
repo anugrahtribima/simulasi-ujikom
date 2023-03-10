@@ -25,7 +25,11 @@ class BrandController extends Controller
      */
     public function create()
     {
-        //
+        $brand = brand::create(
+            $request->all()
+        );
+
+        return redirect()->back();
     }
 
     /**
@@ -64,9 +68,9 @@ class BrandController extends Controller
     public function edit($id)
     {
         $brand = Brand::findOrFail($id);
+
         return view('brand.edit', compact('brand'));
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -74,13 +78,11 @@ class BrandController extends Controller
      * @param  \App\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Brand $brand)
     {
-        $brand = Brand::findOrFail($id);
+        $brand->update($request->all());
 
-        $brand->update(["nama" => $request->nama]);
-
-        return redirect()->back();
+        return redirect()->route('brand');
     }
 
     /**
