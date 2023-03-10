@@ -15,15 +15,27 @@ class RequestBarangController extends Controller
         $permintaan = Barang::findOrFail($id);
         return view('barang.request.edit', compact('permintaan'));
     }
+
     public function store(Request $request, $id)
     {
         $barang = Barang::findOrFail($id);
+
+        // buat permintaan
+        $totalHarga = $request->jumlah * $request->total;
         Permintaan::create([
             'barang_id' => $barang->id,
             'jumlah'    => $request->jumlah,
-            'total'     => $request->total,
-            'status'    => 'in'
+            'total'     => $totalHarga,
+            'status'    => 0
         ]);
+
+        // pengurangan stock
+        $totalStock = $barang->quantity - $request->jumlah;
+
+        $barang->update([
+            'quantity' => $totalStock,
+        ]);
+
         return redirect()->route('barang');
     }
 }

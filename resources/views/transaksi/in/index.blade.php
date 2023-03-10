@@ -20,7 +20,7 @@
                         <th>Supplier</th>
                         <th>Jumlah permintaan</th>
                         <th>Tanggal</th>
-                        <th>Quantity</th>
+                        <th>Harga</th>
                         <th>Status</th>
                         @role('ketua')
                         <th>Options</th>
@@ -34,9 +34,13 @@
                         <td>{{$permintaan->barang->brand->nama}}</td>
                         <td>{{$permintaan->jumlah}}</td>
                         <td>{{$permintaan->created_at}}</td>
-                        <td>{{$permintaan->total}}</td>
-                        <td>{{$permintaan->status}}</td>
-                        @role('ketua') @if ($permintaan->status == 'in')
+                        <td>Rp. {{$permintaan->total}}</td>
+                        <td>
+                            @if( $permintaan->status == 0 )
+                            In
+                            @endif
+                        </td>
+                        @role('ketua') @if ($permintaan->status == 0)
                         <td class="d-flex"> 
                             <form
                                 class="mr-2"

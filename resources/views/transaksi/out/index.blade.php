@@ -15,9 +15,9 @@
                     <tr>
                         <th>Refrensi</th>
                         <th>Supplier</th>
-                        <th>Quantity</th>
+                        <th>Jumlah permintaan</th>
                         <th>Tanggal</th>
-                        <th>Status</th>
+                        <th>Harga</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -27,8 +27,9 @@
                         <td>{{$permintaan->barang->brand->nama}}</td>
                         <td>{{$permintaan->jumlah}}</td>
                         <td>{{$permintaan->created_at}}</td>
-                        <td>{{$permintaan->total}}</td>
-                        @role('customer') @if ($permintaan->status !== 'in')
+                        <td>Rp. {{$permintaan->total}}</td>
+                        @role('ketua') 
+                        @if ($permintaan->status == 0)
                         <td class="d-flex">
                             <form action="" method="post">
                                 @csrf
